@@ -14,8 +14,7 @@ import {
 } from "./utils.js";
 import chalk from "chalk";
 import chokidar from "chokidar";
-
-const VERSION = "0.0.1";
+import { VERSION } from "./common.js";
 
 const program = new Command();
 
@@ -393,6 +392,7 @@ program
             {
               include: ["./src"],
               compilerOptions: {
+                types: ["hopper-mcbe/types/script_globals"],
                 forceConsistentCasingInFileNames: true,
                 strict: true,
                 target: "es2022",
