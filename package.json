@@ -6,6 +6,7 @@
   "repository": {
     "url": "https://github.com/hopper-mcbe/hopper-mcbe"
   },
+  "readme": "https://hopper-mcbe.github.io/docs/",
   "type": "module",
   "files": [
     "dist",
