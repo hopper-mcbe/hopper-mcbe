@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "author": "Shawn Bhumbla <shawnbhumbla2@gmail.com>",
   "license": "ISC",
+  "repository": {
+    "url": "https://github.com/hopper-mcbe/hopper-mcbe"
+  },
   "type": "module",
   "files": [
     "dist",
