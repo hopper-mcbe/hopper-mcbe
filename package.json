@@ -1,0 +1,40 @@
+{
+  "name": "hopper-mcbe",
+  "version": "0.0.1",
+  "author": "Shawn Bhumbla <shawnbhumbla2@gmail.com>",
+  "license": "ISC",
+  "type": "module",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "bin": {
+    "hopper": "./dist/bin.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint .",
+    "format": "prettier -w .",
+    "fl": "npm run format && npm run lint"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.3",
+    "@types/node": "^20.4.4",
+    "@types/uuid": "^9.0.2",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "chokidar": "^3.5.3",
+    "commander": "^11.0.0",
+    "esbuild": "^0.18.15",
+    "inquirer": "^9.2.8",
+    "ora": "^6.3.1",
+    "uuid": "^9.0.0"
+  }
+}
