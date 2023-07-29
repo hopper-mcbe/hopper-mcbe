@@ -158,15 +158,17 @@ program
         build(buildOptions)
           .then(() => {
             log("info", "Completed script rebuild");
+          })
+          .catch((err) => {
+            log("error", (err as Error).message);
+          })
+          .finally(() => {
             if (shouldRebuild) {
               shouldRebuild = false;
               scriptRebuild();
             } else {
               isRebuilding = false;
             }
-          })
-          .catch((err) => {
-            log("error", (err as Error).message);
           });
       }
 
