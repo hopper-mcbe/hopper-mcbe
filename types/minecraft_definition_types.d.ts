@@ -748,6 +748,7 @@ export type BG={
 */
 "block_filter"?:Array<BH>;
 }>;
+[k:string]:any;
 };
 export type CB=Array<JsonType>;
 export type CA=CB;
@@ -796,6 +797,7 @@ export type CF={
 *@description The target of event executed on the block.
 */
 "target"?:string;
+[k:string]:any;
 };
 export type CG={
 /**
@@ -811,6 +813,7 @@ export type CG={
 *@description The target of event executed on the block.
 */
 "target"?:string;
+[k:string]:any;
 };
 export type CH={
 /**
@@ -826,6 +829,7 @@ export type CH={
 *@description The target of event executed on the block.
 */
 "target"?:string;
+[k:string]:any;
 };
 export type CI={
 /**
@@ -841,6 +845,7 @@ export type CI={
 *@description The target of event executed on the block.
 */
 "target"?:string;
+[k:string]:any;
 };
 export type CJ={
 /**
@@ -856,6 +861,7 @@ export type CJ={
 *@description The target of event executed on the block.
 */
 "target"?:string;
+[k:string]:any;
 };
 export type DA={
 /**
@@ -871,6 +877,7 @@ export type DA={
 *@description The target of event executed on the block.
 */
 "target"?:string;
+[k:string]:any;
 };
 export type DB={
 /**
@@ -886,6 +893,7 @@ export type DB={
 *@description The target of event executed on the block.
 */
 "target"?:string;
+[k:string]:any;
 };
 export type DC={
 /**
@@ -963,6 +971,7 @@ export type DE={
 "minecraft:on_player_placing"?:DE_event_base;
 "minecraft:on_step_off"?:DE_event_base;
 "minecraft:on_step_on"?:DE_event_base;
+[k:string]:any;
 };
 export type B={
 /**
@@ -1003,7 +1012,9 @@ export type B={
 *@description UNDOCUMENTED.
 */
 "properties"?:{
-[k:string]:Array<boolean|number|integer|string>|Record<string,never>;
+[k:string]:Array<boolean|number|integer|string>|{
+[k:string]:any;
+};
 };
 };
 "events"?:DE;
@@ -1270,6 +1281,7 @@ export type BA=string;
 export type BB=string;
 export type J=BA|J_object_item_descriptor|{
 "item"?:BA|J_object_item_descriptor;
+[k:string]:any;
 };
 export type BC={
 /**
@@ -1298,6 +1310,7 @@ export type I={
 "feed_items"?:Array<BA|{
 "growth"?:number;
 "item"?:J;
+[k:string]:any;
 }>|BA;
 /**
 *@description Event to run when this entity grows up.
@@ -1327,6 +1340,7 @@ export type BD={
 *@description Level sound event to be played as the ambient sound.
 */
 "event_name"?:BE;
+[k:string]:any;
 }>;
 /**
 *@default 16
@@ -1352,6 +1366,7 @@ export type BG_filters_spec={
 *@description All tests in a `none_of` group must fail in order for the group to pass.
 */
 "none_of"?:BG_groups_spec;
+[k:string]:any;
 }|BH|CA|CB|CC|CD|CE|CF|CG|CH|CI|DA|DB|DC|DD|DE|DF|DG|DH|DI|DJ|EA|EB|EC|ED|EE|EF|EG|EH|EI|EJ|FA|FB|FC|FD|FE|FF|FG|FH|FI|FJ|GA|GB|GC|GD|GE|GF|GG|GH|GI|GJ|HA|HB|HC|HD|HE|HF|HG|HH|HI|HJ|IA|IB|IC|ID|IE|IF|IG|IH|II|IJ|JA|JB|JC|JD|JE|JsonType;
 export type BG_groups_spec=Array<BG_groups_spec>|BG_filters_spec;
 export type BI=string;
@@ -1380,6 +1395,7 @@ export type BH={
 *@description true or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type CA={
 /**
@@ -1426,6 +1442,7 @@ export type CA={
 *@description (Required) A floating point value.
 */
 "value":number;
+[k:string]:any;
 };
 export type CB={
 /**
@@ -1438,6 +1455,7 @@ export type CB={
 *@description (Required) A floating point value.
 */
 "value":number;
+[k:string]:any;
 };
 export type CC={
 /**
@@ -1462,6 +1480,7 @@ export type CC={
 *@description (Required) A string value.
 */
 "value":string;
+[k:string]:any;
 };
 export type CD={
 /**
@@ -1486,6 +1505,7 @@ export type CD={
 *@description (Required) A floating point value.
 */
 "value":number;
+[k:string]:any;
 };
 export type CE={
 /**
@@ -1498,6 +1518,7 @@ export type CE={
 *@description (Required) The Ability type to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type CF={
 /**
@@ -1510,6 +1531,7 @@ export type CF={
 *@description (Required) The tag to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type CG={
 /**
@@ -1522,6 +1544,7 @@ export type CG={
 *@description (Required) The component name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type CH={
 /**
@@ -1535,6 +1558,7 @@ export type CH={
 *@description (Optional) true or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type CJ=string;
 export type CI={
@@ -1548,6 +1572,7 @@ export type CI={
 *@description The Damage type to test.
 */
 "value":CJ;
+[k:string]:any;
 };
 export type DA={
 /**
@@ -1565,6 +1590,7 @@ export type DA={
 *@description The item name to look for.
 */
 "value":BA;
+[k:string]:any;
 };
 export type DB={
 /**
@@ -1577,6 +1603,7 @@ export type DB={
 *@description The specified mob effect.
 */
 "value":string;
+[k:string]:any;
 };
 export type DC={
 /**
@@ -1594,6 +1621,7 @@ export type DC={
 *@description The namtag to look for
 */
 "value":boolean;
+[k:string]:any;
 };
 export type DD={
 /**
@@ -1614,6 +1642,7 @@ export type DD={
 *@description (Required) The property name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type DE={
 /**
@@ -1627,6 +1656,7 @@ export type DE={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DF={
 /**
@@ -1640,6 +1670,7 @@ export type DF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DG={
 /**
@@ -1653,6 +1684,7 @@ export type DG={
 *@pattern [a-zA-Z0-9_]+
 */
 "value":string;
+[k:string]:any;
 };
 export type DH={
 /**
@@ -1666,6 +1698,7 @@ export type DH={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DI={
 /**
@@ -1679,6 +1712,7 @@ export type DI={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DJ={
 /**
@@ -1693,6 +1727,7 @@ export type DJ={
 *@maximum 24000
 */
 "value":integer;
+[k:string]:any;
 };
 export type EA={
 /**
@@ -1713,6 +1748,7 @@ export type EA={
 *@description (Optional) A string value.
 */
 "value"?:string;
+[k:string]:any;
 };
 export type EB={
 /**
@@ -1726,6 +1762,7 @@ export type EB={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type EC={
 /**
@@ -1739,6 +1776,7 @@ export type EC={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type ED={
 /**
@@ -1752,6 +1790,7 @@ export type ED={
 *@description (Optional) true or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type EE={
 /**
@@ -1765,6 +1804,7 @@ export type EE={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type EF={
 /**
@@ -1778,6 +1818,7 @@ export type EF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type EG={
 /**
@@ -1791,6 +1832,7 @@ export type EG={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type EH={
 /**
@@ -1804,6 +1846,7 @@ export type EH={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type EI={
 /**
@@ -1816,6 +1859,7 @@ export type EI={
 *@description The Family name to look for.
 */
 "value":integer;
+[k:string]:any;
 };
 export type EJ={
 /**
@@ -1840,6 +1884,7 @@ export type EJ={
 *@description (Required) A integer value.
 */
 "value":integer;
+[k:string]:any;
 };
 export type FA={
 /**
@@ -1853,6 +1898,7 @@ export type FA={
 *@minimum 0
 */
 "value":integer;
+[k:string]:any;
 };
 export type FB={
 /**
@@ -1866,6 +1912,7 @@ export type FB={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FC={
 /**
@@ -1878,6 +1925,7 @@ export type FC={
 *@description The Biome type to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type FD={
 /**
@@ -1890,6 +1938,7 @@ export type FD={
 *@description The Family name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type FE={
 /**
@@ -1904,6 +1953,7 @@ export type FE={
 *@maximum 1
 */
 "value":number;
+[k:string]:any;
 };
 export type FF={
 /**
@@ -1917,6 +1967,7 @@ export type FF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FG={
 /**
@@ -1929,6 +1980,7 @@ export type FG={
 *@description The Palette Color to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type FH={
 /**
@@ -1942,6 +1994,7 @@ export type FH={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FI={
 /**
@@ -1954,6 +2007,7 @@ export type FI={
 *@description The game's difficulty level to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type FJ={
 /**
@@ -1966,6 +2020,7 @@ export type FJ={
 *@description The Family name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type GA={
 /**
@@ -2095,6 +2150,7 @@ export type GA={
 *@description Tests whether a named game rule is active.
 */
 "value":boolean;
+[k:string]:any;
 };
 export type GB={
 /**
@@ -2108,6 +2164,7 @@ export type GB={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GC={
 /**
@@ -2121,6 +2178,7 @@ export type GC={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GD={
 /**
@@ -2134,6 +2192,7 @@ export type GD={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GE={
 /**
@@ -2147,6 +2206,7 @@ export type GE={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GF={
 /**
@@ -2160,6 +2220,7 @@ export type GF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GG={
 /**
@@ -2185,6 +2246,7 @@ export type GH={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GI={
 /**
@@ -2198,6 +2260,7 @@ export type GI={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GJ={
 /**
@@ -2211,6 +2274,7 @@ export type GJ={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type HA={
 /**
@@ -2224,6 +2288,7 @@ export type HA={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type HB={
 /**
@@ -2237,6 +2302,7 @@ export type HB={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type HC={
 /**
@@ -2249,6 +2315,7 @@ export type HC={
 *@description The altitude value to compare with.
 */
 "value"?:integer;
+[k:string]:any;
 };
 export type HD={
 /**
@@ -2262,6 +2329,7 @@ export type HD={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type HE={
 /**
@@ -2275,6 +2343,7 @@ export type HE={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type HF={
 /**
@@ -2288,6 +2357,7 @@ export type HF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type HG={
 /**
@@ -2301,6 +2371,7 @@ export type HG={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type HH={
 /**
@@ -2313,6 +2384,7 @@ export type HH={
 *@description The Biome temperature catagory to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type HI={
 /**
@@ -2327,6 +2399,7 @@ export type HI={
 *@maximum 1
 */
 "value":number;
+[k:string]:any;
 };
 export type HJ={
 /**
@@ -2340,6 +2413,7 @@ export type HJ={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type IA={
 /**
@@ -2353,6 +2427,7 @@ export type IA={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type IB={
 /**
@@ -2365,6 +2440,7 @@ export type IB={
 *@description The altitude value to compare with.
 */
 "value":integer;
+[k:string]:any;
 };
 export type IC={
 /**
@@ -2378,6 +2454,7 @@ export type IC={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type ID={
 /**
@@ -2390,6 +2467,7 @@ export type ID={
 *@description true or false.
 */
 "value":boolean;
+[k:string]:any;
 };
 export type IE={
 /**
@@ -2404,6 +2482,7 @@ export type IE={
 *@maximum 16
 */
 "value":integer;
+[k:string]:any;
 };
 export type IF={
 /**
@@ -2418,6 +2497,7 @@ export type IF={
 *@maximum 1
 */
 "value":number;
+[k:string]:any;
 };
 export type IG={
 /**
@@ -2432,6 +2512,7 @@ export type IG={
 *@maximum 7
 */
 "value":integer;
+[k:string]:any;
 };
 export type IH={
 /**
@@ -2445,6 +2526,7 @@ export type IH={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type II={
 /**
@@ -2458,6 +2540,7 @@ export type II={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type IJ={
 /**
@@ -2470,6 +2553,7 @@ export type IJ={
 *@description An integer value.
 */
 "value":integer;
+[k:string]:any;
 };
 export type JA={
 /**
@@ -2482,6 +2566,7 @@ export type JA={
 *@description An integer value.
 */
 "value":integer;
+[k:string]:any;
 };
 export type JB={
 /**
@@ -2495,6 +2580,7 @@ export type JB={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type JC={
 /**
@@ -2508,6 +2594,7 @@ export type JC={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type JD={
 /**
@@ -2524,6 +2611,7 @@ export type JD={
 *@description The Family name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type JE={
 /**
@@ -2544,6 +2632,7 @@ export type JE={
 *@description The Family name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type BG=BG_groups_spec;
 export type BF={
@@ -2940,6 +3029,7 @@ export type BBF_breeds_with_spec={
 *@description The entity definition of this entity's mate.
 */
 "mate_type"?:string;
+[k:string]:any;
 };
 export type BBF_enviroment_requirements={
 /**
@@ -2955,6 +3045,7 @@ export type BBF_enviroment_requirements={
 *@minimum 0
 */
 "radius"?:number;
+[k:string]:any;
 };
 export type BBG={
 /**
@@ -3118,7 +3209,9 @@ export type BBI={
 */
 "simulate_waves"?:boolean;
 };
-export type BBJ=boolean|Record<string,never>;
+export type BBJ=boolean|{
+[k:string]:any;
+};
 export type BCA=Record<string,never>;
 export type BCB={
 /**
@@ -3601,6 +3694,7 @@ export type BED={
 *@description Event to trigger when this item is removed from this entity.
 */
 "on_unequip"?:BC;
+[k:string]:any;
 }>;
 };
 export type BEE={
@@ -3832,6 +3926,7 @@ export type BFF_integer_range=integer|{
 *@description Upper bound of the vaues.
 */
 "range_max"?:integer;
+[k:string]:any;
 };
 export type BFF={
 /**
@@ -3880,11 +3975,13 @@ export type BFF={
 *@description If this value is non-negative, overrides the chance for this gene that an allele will be replaced with a random one instead of the parent's allele during birth. Non-negative values greater than 1 will be the same as the value 1.
 */
 "mutation_rate"?:number;
+[k:string]:any;
 }>;
 /**
 *@description The name of the gene.
 */
 "name"?:string;
+[k:string]:any;
 }>;
 };
 export type BFG={
@@ -3951,6 +4048,7 @@ export type BGA_effect={
 *@description The amplifier of the effect.
 */
 "amplifier"?:integer;
+[k:string]:any;
 };
 export type BGA={
 "filters"?:BG;
@@ -3976,6 +4074,7 @@ export type BGA={
 */
 "item"?:J;
 "effects"?:BGA_effect|Array<BGA_effect>;
+[k:string]:any;
 }>;
 };
 export type BGB={
@@ -4145,6 +4244,7 @@ export type BHD_interaction_spec={
 *@description Will offset the particle this amount in the y direction.
 */
 "particle_y_offset"?:number;
+[k:string]:any;
 };
 /**
 *@description List of sounds to play when the interaction occurs.
@@ -5254,6 +5354,7 @@ export type CEB=string|{
 *@description The target of the event.
 */
 "target"?:string;
+[k:string]:any;
 };
 export type CDJ={
 /**
@@ -5654,7 +5755,9 @@ export type CDJ={
 /**
 *@description Decides if the object sticks in ground and contains shake_time integer parameter to determine how long it will shake.
 */
-"stick_in_ground"?:Record<string,never>;
+"stick_in_ground"?:{
+[k:string]:any;
+};
 /**
 *@description Determines if the owner is transported on hit.
 */
@@ -5662,7 +5765,9 @@ export type CDJ={
 /**
 *@description Creates a splash area for effects caused by a thrown potion.
 */
-"thrown_potion_effect"?:Record<string,never>;
+"thrown_potion_effect"?:{
+[k:string]:any;
+};
 };
 /**
 *@default "iconcrack"
@@ -6169,12 +6274,14 @@ export type CGC_feed_items={
 *@description The amount of temper this entity gains when fed this item.
 */
 "temper_mod"?:number;
+[k:string]:any;
 };
 export type CGC_auto_reject_items={
 /**
 *@description Name of the item this entity dislikes and will cause it to get angry if used while untamed.
 */
 "item"?:J;
+[k:string]:any;
 };
 export type CGC={
 /**
@@ -6427,6 +6534,7 @@ export type CHA={
 *@description Time in seconds before the entity transforms.
 */
 "value"?:number;
+[k:string]:any;
 };
 /**
 *@description Cause the entity to drop all equipment upon transformation.
@@ -7363,6 +7471,7 @@ export type DBH={
 *@description The block to replace the eaten block with.
 */
 "replace_block"?:BAI;
+[k:string]:any;
 }>;
 };
 export type DBI={
@@ -8678,6 +8787,7 @@ export type DHF_entity_type={
 *@description Time (in seconds) the target must not be seen by this entity to become invalid. Used only if `must_see` is true.
 */
 "must_see_forget_duration"?:boolean;
+[k:string]:any;
 };
 export type DHF={
 "priority"?:CID;
@@ -10925,6 +11035,7 @@ export type EFA_event_base={
 *@description The weight on how likely this section is to trigger.
 */
 "weight"?:number;
+[k:string]:any;
 }>;
 /**
 *@description A series of filters and components to be added.
@@ -10943,6 +11054,7 @@ export type EFA_event_base={
 */
 "trigger"?:BAA;
 "filters"?:BG;
+[k:string]:any;
 }>;
 /**
 *@example
@@ -11038,6 +11150,7 @@ export type B={
 *@description The default value of the property.
 */
 "default"?:D;
+[k:string]:any;
 }|{
 "type"?:"int";
 /**
@@ -11048,6 +11161,7 @@ export type B={
 *@description The range of the property.
 */
 "range"?:Array<JsonType>;
+[k:string]:any;
 }|{
 "type"?:"float";
 /**
@@ -11058,6 +11172,7 @@ export type B={
 *@description The range of the property.
 */
 "range"?:Array<JsonType>;
+[k:string]:any;
 }|{
 "type"?:"enum";
 "default"?:string;
@@ -11070,6 +11185,7 @@ export type B={
 *@minItems 1
 */
 "values"?:Array<string>;
+[k:string]:any;
 };
 };
 /**
@@ -11090,7 +11206,9 @@ export type B={
 "animate"?:Array<string|{
 [k:string]:string;
 }>;
+[k:string]:any;
 };
+[k:string]:any;
 };
 /**
 *@description Each group when add / remove the default components.
@@ -11162,6 +11280,7 @@ export type D_filters_spec={
 *@description All tests in a `none_of` group must fail in order for the group to pass.
 */
 "none_of"?:D_groups_spec;
+[k:string]:any;
 }|E|H|I|J|BA|BB|BC|BD|BE|BF|BH|BJ|CA|CB|CC|CD|CE|CF|CG|CH|CI|CJ|DA|DB|DC|DD|DE|DF|DG|DH|DI|DJ|EA|EB|EC|ED|EE|EF|EG|EH|EI|EJ|FA|FB|FC|FD|FE|FF|FG|FH|FI|FJ|GA|GB|GC|GD|GE|GF|GG|GH|GI|GJ|HA|HB|HC|HD|HE|HF|HG|HH|HI|HJ|IA|IB|IC|JsonType;
 export type D_groups_spec=Array<D_groups_spec>|D_filters_spec;
 export type F=string;
@@ -11190,6 +11309,7 @@ export type E={
 *@description true or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type H={
 /**
@@ -11236,6 +11356,7 @@ export type H={
 *@description (Required) A floating point value.
 */
 "value":number;
+[k:string]:any;
 };
 export type I={
 /**
@@ -11248,6 +11369,7 @@ export type I={
 *@description (Required) A floating point value.
 */
 "value":number;
+[k:string]:any;
 };
 export type J={
 /**
@@ -11272,6 +11394,7 @@ export type J={
 *@description (Required) A string value.
 */
 "value":string;
+[k:string]:any;
 };
 export type BA={
 /**
@@ -11296,6 +11419,7 @@ export type BA={
 *@description (Required) A floating point value.
 */
 "value":number;
+[k:string]:any;
 };
 export type BB={
 /**
@@ -11308,6 +11432,7 @@ export type BB={
 *@description (Required) The Ability type to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type BC={
 /**
@@ -11320,6 +11445,7 @@ export type BC={
 *@description (Required) The tag to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type BD={
 /**
@@ -11332,6 +11458,7 @@ export type BD={
 *@description (Required) The component name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type BE={
 /**
@@ -11345,6 +11472,7 @@ export type BE={
 *@description (Optional) true or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type BG=string;
 export type BF={
@@ -11358,6 +11486,7 @@ export type BF={
 *@description The Damage type to test.
 */
 "value":BG;
+[k:string]:any;
 };
 export type BI=string;
 export type BH={
@@ -11376,6 +11505,7 @@ export type BH={
 *@description The item name to look for.
 */
 "value":BI;
+[k:string]:any;
 };
 export type BJ={
 /**
@@ -11388,6 +11518,7 @@ export type BJ={
 *@description The specified mob effect.
 */
 "value":string;
+[k:string]:any;
 };
 export type CA={
 /**
@@ -11405,6 +11536,7 @@ export type CA={
 *@description The namtag to look for
 */
 "value":boolean;
+[k:string]:any;
 };
 export type CB={
 /**
@@ -11425,6 +11557,7 @@ export type CB={
 *@description (Required) The property name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type CC={
 /**
@@ -11438,6 +11571,7 @@ export type CC={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type CD={
 /**
@@ -11451,6 +11585,7 @@ export type CD={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type CE={
 /**
@@ -11464,6 +11599,7 @@ export type CE={
 *@pattern [a-zA-Z0-9_]+
 */
 "value":string;
+[k:string]:any;
 };
 export type CF={
 /**
@@ -11477,6 +11613,7 @@ export type CF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type CG={
 /**
@@ -11490,6 +11627,7 @@ export type CG={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type CH={
 /**
@@ -11504,6 +11642,7 @@ export type CH={
 *@maximum 24000
 */
 "value":integer;
+[k:string]:any;
 };
 export type CI={
 /**
@@ -11524,6 +11663,7 @@ export type CI={
 *@description (Optional) A string value.
 */
 "value"?:string;
+[k:string]:any;
 };
 export type CJ={
 /**
@@ -11537,6 +11677,7 @@ export type CJ={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DA={
 /**
@@ -11550,6 +11691,7 @@ export type DA={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DB={
 /**
@@ -11563,6 +11705,7 @@ export type DB={
 *@description (Optional) true or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DC={
 /**
@@ -11576,6 +11719,7 @@ export type DC={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DD={
 /**
@@ -11589,6 +11733,7 @@ export type DD={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DE={
 /**
@@ -11602,6 +11747,7 @@ export type DE={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DF={
 /**
@@ -11615,6 +11761,7 @@ export type DF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DG={
 /**
@@ -11627,6 +11774,7 @@ export type DG={
 *@description The Family name to look for.
 */
 "value":integer;
+[k:string]:any;
 };
 export type DH={
 /**
@@ -11651,6 +11799,7 @@ export type DH={
 *@description (Required) A integer value.
 */
 "value":integer;
+[k:string]:any;
 };
 export type DI={
 /**
@@ -11664,6 +11813,7 @@ export type DI={
 *@minimum 0
 */
 "value":integer;
+[k:string]:any;
 };
 export type DJ={
 /**
@@ -11677,6 +11827,7 @@ export type DJ={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type EA={
 /**
@@ -11689,6 +11840,7 @@ export type EA={
 *@description The Biome type to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type EB={
 /**
@@ -11701,6 +11853,7 @@ export type EB={
 *@description The Family name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type EC={
 /**
@@ -11715,6 +11868,7 @@ export type EC={
 *@maximum 1
 */
 "value":number;
+[k:string]:any;
 };
 export type ED={
 /**
@@ -11728,6 +11882,7 @@ export type ED={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type EE={
 /**
@@ -11740,6 +11895,7 @@ export type EE={
 *@description The Palette Color to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type EF={
 /**
@@ -11753,6 +11909,7 @@ export type EF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type EG={
 /**
@@ -11765,6 +11922,7 @@ export type EG={
 *@description The game's difficulty level to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type EH={
 /**
@@ -11777,6 +11935,7 @@ export type EH={
 *@description The Family name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type EI={
 /**
@@ -11906,6 +12065,7 @@ export type EI={
 *@description Tests whether a named game rule is active.
 */
 "value":boolean;
+[k:string]:any;
 };
 export type EJ={
 /**
@@ -11919,6 +12079,7 @@ export type EJ={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FA={
 /**
@@ -11932,6 +12093,7 @@ export type FA={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FB={
 /**
@@ -11945,6 +12107,7 @@ export type FB={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FC={
 /**
@@ -11958,6 +12121,7 @@ export type FC={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FD={
 /**
@@ -11971,6 +12135,7 @@ export type FD={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FE={
 /**
@@ -11996,6 +12161,7 @@ export type FF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FG={
 /**
@@ -12009,6 +12175,7 @@ export type FG={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FH={
 /**
@@ -12022,6 +12189,7 @@ export type FH={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FI={
 /**
@@ -12035,6 +12203,7 @@ export type FI={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FJ={
 /**
@@ -12048,6 +12217,7 @@ export type FJ={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GA={
 /**
@@ -12060,6 +12230,7 @@ export type GA={
 *@description The altitude value to compare with.
 */
 "value"?:integer;
+[k:string]:any;
 };
 export type GB={
 /**
@@ -12073,6 +12244,7 @@ export type GB={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GC={
 /**
@@ -12086,6 +12258,7 @@ export type GC={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GD={
 /**
@@ -12099,6 +12272,7 @@ export type GD={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GE={
 /**
@@ -12112,6 +12286,7 @@ export type GE={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GF={
 /**
@@ -12124,6 +12299,7 @@ export type GF={
 *@description The Biome temperature catagory to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type GG={
 /**
@@ -12138,6 +12314,7 @@ export type GG={
 *@maximum 1
 */
 "value":number;
+[k:string]:any;
 };
 export type GH={
 /**
@@ -12151,6 +12328,7 @@ export type GH={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GI={
 /**
@@ -12164,6 +12342,7 @@ export type GI={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GJ={
 /**
@@ -12176,6 +12355,7 @@ export type GJ={
 *@description The altitude value to compare with.
 */
 "value":integer;
+[k:string]:any;
 };
 export type HA={
 /**
@@ -12189,6 +12369,7 @@ export type HA={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type HB={
 /**
@@ -12201,6 +12382,7 @@ export type HB={
 *@description true or false.
 */
 "value":boolean;
+[k:string]:any;
 };
 export type HC={
 /**
@@ -12215,6 +12397,7 @@ export type HC={
 *@maximum 16
 */
 "value":integer;
+[k:string]:any;
 };
 export type HD={
 /**
@@ -12229,6 +12412,7 @@ export type HD={
 *@maximum 1
 */
 "value":number;
+[k:string]:any;
 };
 export type HE={
 /**
@@ -12243,6 +12427,7 @@ export type HE={
 *@maximum 7
 */
 "value":integer;
+[k:string]:any;
 };
 export type HF={
 /**
@@ -12256,6 +12441,7 @@ export type HF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type HG={
 /**
@@ -12269,6 +12455,7 @@ export type HG={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type HH={
 /**
@@ -12281,6 +12468,7 @@ export type HH={
 *@description An integer value.
 */
 "value":integer;
+[k:string]:any;
 };
 export type HI={
 /**
@@ -12293,6 +12481,7 @@ export type HI={
 *@description An integer value.
 */
 "value":integer;
+[k:string]:any;
 };
 export type HJ={
 /**
@@ -12306,6 +12495,7 @@ export type HJ={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type IA={
 /**
@@ -12319,6 +12509,7 @@ export type IA={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type IB={
 /**
@@ -12335,6 +12526,7 @@ export type IB={
 *@description The Family name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type IC={
 /**
@@ -12355,6 +12547,7 @@ export type IC={
 *@description The Family name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type D=D_groups_spec;
 export type A={
@@ -12442,6 +12635,7 @@ export type ID=string;
 */
 export type Main=A|{
 "format_version"?:ID;
+[k:string]:any;
 };
 }
 export namespace b_features {
@@ -12455,6 +12649,7 @@ export type B={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Collection of features to be placed one by one. No guarantee of order. All features use the same input position.
@@ -12476,6 +12671,7 @@ export type D={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Named reference of feature to be placed.
@@ -12520,6 +12716,7 @@ export type F={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Reference to the block to fill the cave with.
@@ -12540,6 +12737,7 @@ export type H={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Array of Features, and their associated Conditions, for attempted placement. These features will be evaluated as ordered.
@@ -12568,6 +12766,7 @@ export type J={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description The block to fill the inside of the geode.
@@ -12686,6 +12885,7 @@ export type BA_range={
 *@description The minimum plant height.
 */
 "range_min":integer;
+[k:string]:any;
 };
 export type BA_rangeOrInt=integer|BA_range;
 export type BA_blocks_array=Array<Array<JsonType>>;
@@ -12698,6 +12898,7 @@ export type BA={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Age of the head of the plant.
@@ -12750,6 +12951,7 @@ export type BB={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Reference to the block to fill the cave with.
@@ -12769,6 +12971,7 @@ export type BC={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Reference to the block to be placed.
@@ -12813,6 +13016,7 @@ export type BD={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description The number of blocks to be placed.
@@ -12833,6 +13037,7 @@ export type BD={
 *@minItems 1
 */
 "may_replace"?:Array<E>;
+[k:string]:any;
 }>;
 };
 export type BE={
@@ -12844,6 +13049,7 @@ export type BE={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Ratio of a Chunk to be filled with empty space rather than features.
@@ -12865,6 +13071,7 @@ export type BF={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Named reference of feature to be placed.
@@ -12900,6 +13107,7 @@ export type BG={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Named reference of feature to be placed.
@@ -12942,6 +13150,7 @@ export type BH={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Named reference of feature to be placed.
@@ -12979,6 +13188,7 @@ export type BI={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description List of features to be placed in sequence. The output position of the previous feature is used as the input position to the next.
@@ -12996,6 +13206,7 @@ export type BJ={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Reference to the block to be placed.
@@ -13070,6 +13281,7 @@ export type CA={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Named reference of feature to be snapped.
@@ -13093,6 +13305,7 @@ export type CB={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Reference to the structure to be placed.
@@ -13392,6 +13605,7 @@ export type CC={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 "base_block"?:E|Array<E>;
 /**
@@ -14023,6 +14237,7 @@ export type CE={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description Reference to the block to fill the cave with.
@@ -14046,6 +14261,7 @@ export type CF={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description UNDOCUMENTED.
@@ -14107,6 +14323,7 @@ export type CG={
 *@description The name of this feature in the form `namespace_name:feature_name`. `feature_name` must match the filename.
 */
 "identifier":C;
+[k:string]:any;
 };
 /**
 *@description  Collection of weighted features that placement will select from.
@@ -14158,6 +14375,7 @@ export type CH=string;
 */
 export type Main=A|{
 "format_version"?:CH;
+[k:string]:any;
 };
 }
 export namespace b_items {
@@ -14180,6 +14398,7 @@ export type E_use_on_item={
 *@description Tags.
 */
 "tags"?:F;
+[k:string]:any;
 };
 export type F=string;
 export type E={
@@ -14413,7 +14632,9 @@ export type CE={
 /**
 *@description Event that is called when this item has been repaired.
 */
-"on_repaired"?:Record<string,never>;
+"on_repaired"?:{
+[k:string]:any;
+};
 /**
 *@description Repair item entries.
 */
@@ -14535,6 +14756,7 @@ export type DB_event_functions={
 "swing"?:DH;
 "teleport"?:DI;
 "transform_item"?:DJ;
+[k:string]:any;
 };
 export type DC={
 /**
@@ -14685,6 +14907,7 @@ export type B={
 export type Main={
 "format_version":A;
 "minecraft:item":B;
+[k:string]:any;
 };
 }
 export namespace b_loot_tables {
@@ -14703,6 +14926,7 @@ export type pools_spec=Array<{
 *@description The maximum amount.
 */
 "max":number;
+[k:string]:any;
 };
 /**
 *@description Whenever this pool item is an item or another table.
@@ -15088,6 +15312,7 @@ export type CD={
 "count"?:integer|{
 "min"?:integer;
 "max"?:integer;
+[k:string]:any;
 };
 };
 export type CE={
@@ -15111,6 +15336,7 @@ export type CE={
 *@maximum 1
 */
 "max"?:number;
+[k:string]:any;
 };
 };
 export type CF={
@@ -15130,6 +15356,7 @@ export type CF={
 *@description UNDOCUMENTED.
 */
 "max"?:integer;
+[k:string]:any;
 };
 };
 export type CG={
@@ -15396,6 +15623,7 @@ export type BA=string;
 */
 export type Main=A|A|{
 "format_version"?:BA;
+[k:string]:any;
 };
 }
 export namespace b_spawn_rules {
@@ -15414,6 +15642,7 @@ export type D_filters_spec={
 *@description All tests in a `none_of` group must fail in order for the group to pass.
 */
 "none_of"?:D_groups_spec;
+[k:string]:any;
 }|E|H|I|J|BA|BB|BC|BD|BE|BF|BH|BJ|CA|CB|CC|CD|CE|CF|CG|CH|CI|CJ|DA|DB|DC|DD|DE|DF|DG|DH|DI|DJ|EA|EB|EC|ED|EE|EF|EG|EH|EI|EJ|FA|FB|FC|FD|FE|FF|FG|FH|FI|FJ|GA|GB|GC|GD|GE|GF|GG|GH|GI|GJ|HA|HB|HC|HD|HE|HF|HG|HH|HI|HJ|IA|IB|IC|JsonType;
 export type D_groups_spec=Array<D_groups_spec>|D_filters_spec;
 export type F=string;
@@ -15442,6 +15671,7 @@ export type E={
 *@description true or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type H={
 /**
@@ -15488,6 +15718,7 @@ export type H={
 *@description (Required) A floating point value.
 */
 "value":number;
+[k:string]:any;
 };
 export type I={
 /**
@@ -15500,6 +15731,7 @@ export type I={
 *@description (Required) A floating point value.
 */
 "value":number;
+[k:string]:any;
 };
 export type J={
 /**
@@ -15524,6 +15756,7 @@ export type J={
 *@description (Required) A string value.
 */
 "value":string;
+[k:string]:any;
 };
 export type BA={
 /**
@@ -15548,6 +15781,7 @@ export type BA={
 *@description (Required) A floating point value.
 */
 "value":number;
+[k:string]:any;
 };
 export type BB={
 /**
@@ -15560,6 +15794,7 @@ export type BB={
 *@description (Required) The Ability type to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type BC={
 /**
@@ -15572,6 +15807,7 @@ export type BC={
 *@description (Required) The tag to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type BD={
 /**
@@ -15584,6 +15820,7 @@ export type BD={
 *@description (Required) The component name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type BE={
 /**
@@ -15597,6 +15834,7 @@ export type BE={
 *@description (Optional) true or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type BG=string;
 export type BF={
@@ -15610,6 +15848,7 @@ export type BF={
 *@description The Damage type to test.
 */
 "value":BG;
+[k:string]:any;
 };
 export type BI=string;
 export type BH={
@@ -15628,6 +15867,7 @@ export type BH={
 *@description The item name to look for.
 */
 "value":BI;
+[k:string]:any;
 };
 export type BJ={
 /**
@@ -15640,6 +15880,7 @@ export type BJ={
 *@description The specified mob effect.
 */
 "value":string;
+[k:string]:any;
 };
 export type CA={
 /**
@@ -15657,6 +15898,7 @@ export type CA={
 *@description The namtag to look for
 */
 "value":boolean;
+[k:string]:any;
 };
 export type CB={
 /**
@@ -15677,6 +15919,7 @@ export type CB={
 *@description (Required) The property name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type CC={
 /**
@@ -15690,6 +15933,7 @@ export type CC={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type CD={
 /**
@@ -15703,6 +15947,7 @@ export type CD={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type CE={
 /**
@@ -15716,6 +15961,7 @@ export type CE={
 *@pattern [a-zA-Z0-9_]+
 */
 "value":string;
+[k:string]:any;
 };
 export type CF={
 /**
@@ -15729,6 +15975,7 @@ export type CF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type CG={
 /**
@@ -15742,6 +15989,7 @@ export type CG={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type CH={
 /**
@@ -15756,6 +16004,7 @@ export type CH={
 *@maximum 24000
 */
 "value":integer;
+[k:string]:any;
 };
 export type CI={
 /**
@@ -15776,6 +16025,7 @@ export type CI={
 *@description (Optional) A string value.
 */
 "value"?:string;
+[k:string]:any;
 };
 export type CJ={
 /**
@@ -15789,6 +16039,7 @@ export type CJ={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DA={
 /**
@@ -15802,6 +16053,7 @@ export type DA={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DB={
 /**
@@ -15815,6 +16067,7 @@ export type DB={
 *@description (Optional) true or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DC={
 /**
@@ -15828,6 +16081,7 @@ export type DC={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DD={
 /**
@@ -15841,6 +16095,7 @@ export type DD={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DE={
 /**
@@ -15854,6 +16109,7 @@ export type DE={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DF={
 /**
@@ -15867,6 +16123,7 @@ export type DF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type DG={
 /**
@@ -15879,6 +16136,7 @@ export type DG={
 *@description The Family name to look for.
 */
 "value":integer;
+[k:string]:any;
 };
 export type DH={
 /**
@@ -15903,6 +16161,7 @@ export type DH={
 *@description (Required) A integer value.
 */
 "value":integer;
+[k:string]:any;
 };
 export type DI={
 /**
@@ -15916,6 +16175,7 @@ export type DI={
 *@minimum 0
 */
 "value":integer;
+[k:string]:any;
 };
 export type DJ={
 /**
@@ -15929,6 +16189,7 @@ export type DJ={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type EA={
 /**
@@ -15941,6 +16202,7 @@ export type EA={
 *@description The Biome type to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type EB={
 /**
@@ -15953,6 +16215,7 @@ export type EB={
 *@description The Family name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type EC={
 /**
@@ -15967,6 +16230,7 @@ export type EC={
 *@maximum 1
 */
 "value":number;
+[k:string]:any;
 };
 export type ED={
 /**
@@ -15980,6 +16244,7 @@ export type ED={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type EE={
 /**
@@ -15992,6 +16257,7 @@ export type EE={
 *@description The Palette Color to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type EF={
 /**
@@ -16005,6 +16271,7 @@ export type EF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type EG={
 /**
@@ -16017,6 +16284,7 @@ export type EG={
 *@description The game's difficulty level to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type EH={
 /**
@@ -16029,6 +16297,7 @@ export type EH={
 *@description The Family name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type EI={
 /**
@@ -16158,6 +16427,7 @@ export type EI={
 *@description Tests whether a named game rule is active.
 */
 "value":boolean;
+[k:string]:any;
 };
 export type EJ={
 /**
@@ -16171,6 +16441,7 @@ export type EJ={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FA={
 /**
@@ -16184,6 +16455,7 @@ export type FA={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FB={
 /**
@@ -16197,6 +16469,7 @@ export type FB={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FC={
 /**
@@ -16210,6 +16483,7 @@ export type FC={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FD={
 /**
@@ -16223,6 +16497,7 @@ export type FD={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FE={
 /**
@@ -16248,6 +16523,7 @@ export type FF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FG={
 /**
@@ -16261,6 +16537,7 @@ export type FG={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FH={
 /**
@@ -16274,6 +16551,7 @@ export type FH={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FI={
 /**
@@ -16287,6 +16565,7 @@ export type FI={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type FJ={
 /**
@@ -16300,6 +16579,7 @@ export type FJ={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GA={
 /**
@@ -16312,6 +16592,7 @@ export type GA={
 *@description The altitude value to compare with.
 */
 "value"?:integer;
+[k:string]:any;
 };
 export type GB={
 /**
@@ -16325,6 +16606,7 @@ export type GB={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GC={
 /**
@@ -16338,6 +16620,7 @@ export type GC={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GD={
 /**
@@ -16351,6 +16634,7 @@ export type GD={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GE={
 /**
@@ -16364,6 +16648,7 @@ export type GE={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GF={
 /**
@@ -16376,6 +16661,7 @@ export type GF={
 *@description The Biome temperature catagory to test.
 */
 "value":string;
+[k:string]:any;
 };
 export type GG={
 /**
@@ -16390,6 +16676,7 @@ export type GG={
 *@maximum 1
 */
 "value":number;
+[k:string]:any;
 };
 export type GH={
 /**
@@ -16403,6 +16690,7 @@ export type GH={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GI={
 /**
@@ -16416,6 +16704,7 @@ export type GI={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type GJ={
 /**
@@ -16428,6 +16717,7 @@ export type GJ={
 *@description The altitude value to compare with.
 */
 "value":integer;
+[k:string]:any;
 };
 export type HA={
 /**
@@ -16441,6 +16731,7 @@ export type HA={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type HB={
 /**
@@ -16453,6 +16744,7 @@ export type HB={
 *@description true or false.
 */
 "value":boolean;
+[k:string]:any;
 };
 export type HC={
 /**
@@ -16467,6 +16759,7 @@ export type HC={
 *@maximum 16
 */
 "value":integer;
+[k:string]:any;
 };
 export type HD={
 /**
@@ -16481,6 +16774,7 @@ export type HD={
 *@maximum 1
 */
 "value":number;
+[k:string]:any;
 };
 export type HE={
 /**
@@ -16495,6 +16789,7 @@ export type HE={
 *@maximum 7
 */
 "value":integer;
+[k:string]:any;
 };
 export type HF={
 /**
@@ -16508,6 +16803,7 @@ export type HF={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type HG={
 /**
@@ -16521,6 +16817,7 @@ export type HG={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type HH={
 /**
@@ -16533,6 +16830,7 @@ export type HH={
 *@description An integer value.
 */
 "value":integer;
+[k:string]:any;
 };
 export type HI={
 /**
@@ -16545,6 +16843,7 @@ export type HI={
 *@description An integer value.
 */
 "value":integer;
+[k:string]:any;
 };
 export type HJ={
 /**
@@ -16558,6 +16857,7 @@ export type HJ={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type IA={
 /**
@@ -16571,6 +16871,7 @@ export type IA={
 *@description True or false.
 */
 "value"?:boolean;
+[k:string]:any;
 };
 export type IB={
 /**
@@ -16587,6 +16888,7 @@ export type IB={
 *@description The Family name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type IC={
 /**
@@ -16607,6 +16909,7 @@ export type IC={
 *@description The Family name to look for.
 */
 "value":string;
+[k:string]:any;
 };
 export type D=D_groups_spec;
 export type C=Array<D>|D;
@@ -17270,6 +17573,7 @@ export type CE={
 "count"?:integer|{
 "min"?:integer;
 "max"?:integer;
+[k:string]:any;
 };
 };
 export type CF={
@@ -17293,6 +17597,7 @@ export type CF={
 *@maximum 1
 */
 "max"?:number;
+[k:string]:any;
 };
 };
 export type CG={
@@ -17312,6 +17617,7 @@ export type CG={
 *@description UNDOCUMENTED.
 */
 "max"?:integer;
+[k:string]:any;
 };
 };
 export type CH={
@@ -17662,6 +17968,7 @@ export type Main={
 *@description If set, makes the bone rotation relative to the entity instead of the bone's parent.
 */
 "rotation"?:string;
+[k:string]:any;
 };
 /**
 *@description UNDOCUMENTED.
@@ -17841,6 +18148,7 @@ export type A={
 *@description UNDOCUMENTED: texture index.
 */
 "texture_index"?:integer;
+[k:string]:any;
 };
 /**
 *@description UNDOCUMENTED: scripts.
@@ -17861,6 +18169,7 @@ export type A={
 [k:string]:string;
 }>;
 "parent_setup"?:C;
+[k:string]:any;
 };
 /**
 *@description UNDOCUMENTED: textures.
@@ -17999,6 +18308,7 @@ export type D={
 *@description UNDOCUMENTED: texture index.
 */
 "texture_index"?:integer;
+[k:string]:any;
 };
 /**
 *@description UNDOCUMENTED: textures.
@@ -18039,6 +18349,7 @@ export type E=string;
 */
 export type Main=A|D|D|{
 "format_version"?:E;
+[k:string]:any;
 };
 }
 export namespace r_entity {
@@ -18675,6 +18986,7 @@ export type BJ={
 *@description The direction is set if the speed of the particle is above the threshold.
 */
 "min_speed_threshold"?:number;
+[k:string]:any;
 };
 /**
 *@description UNDOCUMENTED: uv.
@@ -18843,6 +19155,7 @@ export type DB={
 *@description UNDOCUMENTED: Minimum speed.
 */
 "min_speed"?:number;
+[k:string]:any;
 }>;
 };
 export type DC={
@@ -18954,7 +19267,9 @@ export type Main={
 *@description Control nodes for curve.  These are assumed to be equally, used Object for bezier_chain
 */
 "nodes"?:Array<C>|{
-[k:string]:Record<string,never>;
+[k:string]:{
+[k:string]:any;
+};
 };
 /**
 *@description The type of curve.
@@ -19017,6 +19332,7 @@ export type Main={
 *@description UNDOCUMENTED: type.
 */
 "type"?:string;
+[k:string]:any;
 };
 /**
 *@description UNDOCUMENTED.
@@ -19026,6 +19342,7 @@ export type Main={
 *@description UNDOCUMENTED: effect.
 */
 "event_name"?:string;
+[k:string]:any;
 };
 };
 };
