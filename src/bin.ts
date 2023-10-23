@@ -410,23 +410,27 @@ program
         ),
         fs.promises.writeFile(
           path.join(inquirerResponse.name, "package.json"),
-          JSON.stringify({
-            type: "module",
-            scripts: {
-              "build-dev": `hopper build "${inquirerResponse.name}"${
-                inquirerResponse.includeRp ? "" : " --no-rp"
-              } -m`,
-              "build-prod": `hopper build "${inquirerResponse.name}"${
-                inquirerResponse.includeRp ? "" : " --no-rp"
-              } -Mo build`,
-              watch: `hopper watch "${inquirerResponse.name}" -m`,
-              clean: `hopper clean "${inquirerResponse.name}"`,
+          JSON.stringify(
+            {
+              type: "module",
+              scripts: {
+                "build-dev": `hopper build "${inquirerResponse.name}"${
+                  inquirerResponse.includeRp ? "" : " --no-rp"
+                } -m`,
+                "build-prod": `hopper build "${inquirerResponse.name}"${
+                  inquirerResponse.includeRp ? "" : " --no-rp"
+                } -Oo build`,
+                watch: `hopper watch "${inquirerResponse.name}" -m`,
+                clean: `hopper clean "${inquirerResponse.name}"`,
+              },
+              devDependencies: {
+                "hopper-mcbe": `^${VERSION}`,
+                ...typeVersionPromptResponse,
+              },
             },
-            devDependencies: {
-              "hopper-mcbe": `^${VERSION}`,
-              ...typeVersionPromptResponse,
-            },
-          }),
+            undefined,
+            4,
+          ),
         ),
       ]);
 
