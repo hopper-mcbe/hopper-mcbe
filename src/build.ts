@@ -13,6 +13,9 @@ import {
   FileDefinition,
 } from "../types/script_globals_helper_types.js";
 import { writeFileRecursive } from "./utils.js";
+import * as babelParser from "@babel/parser";
+import babelGenerator from "@babel/generator";
+import babelTraverse from "@babel/traverse";
 
 function executeAndGetFileDefs(code: string) {
   let mainComponent: Component | undefined;
@@ -147,7 +150,7 @@ interface BuildOptions {
   includeRp: boolean;
   indexPath: string;
   assetsPath: string;
-  minify: boolean;
+  optimize: boolean;
   out: BuildOutOptions;
   name: string;
   copyAssets: boolean;
@@ -186,7 +189,6 @@ export async function build(options: BuildOptions) {
   const bundleContent = (
     await esbuild.build({
       bundle: true,
-      minify: options.minify,
       entryPoints: [options.indexPath],
       format: "esm",
       write: false,
@@ -247,6 +249,7 @@ export async function build(options: BuildOptions) {
 
   // create runtime banner
   const runtimeScript = `let createAddonCalled=!1;globalThis.createAddon=e=>{if(createAddonCalled)throw Error("'createAddon' has already been called");for(let n of e._scriptCallbacks)n(MODULES);createAddonCalled=!0};let allFilesCount=0,fileOnceKeys=new Set;globalThis.defineComponent=e=>{if(createAddonCalled)throw Error("Cannot define a component after 'createAddon' has been called");return(...n)=>{let t=[],l=!0,a=(e,n={})=>{if(!l)throw Error("Cannot use 'define' as it is no longer available");let t=n.once?.key;if(t){if(fileOnceKeys.has(t))return!1;fileOnceKeys.add(t)}let a=n.name??allFilesCount.toString();return allFilesCount++,a},i={serverAnimationController:a,serverAnimation:a,biome:a,block:a,dialogue:a,entity:a,featureRules:a,feature:a,item:a,lootTable:a,recipe:a,spawnRules:a,tradeTable:a,clientAnimationController:a,clientAnimation:a,attachable:a,clientEntity:a,particle:a,renderController:a,rawText:a,script(e,n={}){if(!l)throw Error("Cannot use 'define' as it is no longer available");let a=n.once?.key;if(a){if(fileOnceKeys.has(a))return;fileOnceKeys.add(a)}t.push(e)}};function o(e){if(!l)throw Error("Cannot use 'implement' as it is no longer available");t=[...e._scriptCallbacks,...t]}return e({define:i,implement:o},...n),l=!1,{_fileDefinitions:[],_scriptCallbacks:t}}};`;
+  const optimizedRuntimeScript = `globalThis.createAddon=e=>{for(let c of e._scriptCallbacks)c(MODULES)};const fileOnceKeys=new Set;globalThis.defineComponent=e=>(...c)=>{let n=[],t=(e,c={})=>!1,s=new Proxy({script(e,c={}){let t=c.once?.key;if(t){if(fileOnceKeys.has(t))return;fileOnceKeys.add(t)}n.push(e)}},{get:(e,c)=>"script"===c?e.script:t});function i(e){n=[...e._scriptCallbacks,...n]}return e({define:s,implement:i},...c),{_scriptCallbacks:n}};`;
 
   let imports = "";
   let modulesKeyVal = "";
@@ -259,13 +262,35 @@ export async function build(options: BuildOptions) {
     imports += `import*as ${importName} from"${dependency.module_name}";`;
     modulesKeyVal += `"${alias}":${importName},`;
   }
-  const banner = `${imports}(()=>{const MODULES={${modulesKeyVal}};${runtimeScript}})();`;
+  const banner = `${imports}(()=>{const MODULES={${modulesKeyVal}};${
+    options.optimize ? optimizedRuntimeScript : runtimeScript
+  }})();`;
   //
+
+  let finalBundleContent = banner;
+
+  if (options.optimize) {
+    const ast = babelParser.parse(bundleContent, { sourceType: "module" });
+
+    babelTraverse.default(ast, {
+      LabeledStatement(path) {
+        if (path.node.label.name !== "_") return;
+        path.remove();
+      },
+    });
+
+    finalBundleContent += babelGenerator.default(ast, {
+      minified: true,
+      comments: false,
+    }).code;
+  } else {
+    finalBundleContent += bundleContent;
+  }
 
   writePromises.push(
     writeFileRecursive(
       path.join(outDirBp, "scripts/bundle.js"),
-      banner + bundleContent,
+      finalBundleContent,
     ),
   );
 

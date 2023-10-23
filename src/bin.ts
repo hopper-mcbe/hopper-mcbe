@@ -81,7 +81,7 @@ program
     "Specify the out directory path. Use '--com-mojang' to output to the com.mojang directory",
   )
   .option("--no-rp", "Do not include a RP")
-  .option("-M, --minify", "Should minify the output script bundle")
+  .option("-O, --optimize", "Should optimize the output script bundle")
   .option("--src <path>", "Path to the source directory", "src")
   .option("--entry <path>", "Path to the entry file", "src/index.ts")
   .option("--assets <path>", "Path to the assets directory", "assets")
@@ -92,7 +92,7 @@ program
         comMojang?: boolean | string;
         out?: string;
         rp: boolean;
-        minify?: boolean;
+        optimize?: boolean;
         src: string;
         entry: string;
         assets: string;
@@ -114,7 +114,7 @@ program
         includeRp: options.rp,
         indexPath: options.entry,
         assetsPath: options.assets,
-        minify: !!options.minify,
+        optimize: !!options.optimize,
         out: options.out
           ? { outPath: resolveFilePathEnvironmentVariables(options.out) }
           : {
@@ -218,7 +218,7 @@ program
     "Specify the out directory path. Use '--com-mojang' to output to the com.mojang directory",
   )
   .option("--no-rp", "Do not include a RP")
-  .option("-M, --minify", "Should minify the output script bundle")
+  .option("-O, --optimize", "Should optimize the output script bundle")
   .option("--entry <path>", "Path to the entry file", "src/index.ts")
   .option("--assets <path>", "Path to the assets directory", "assets")
   .action(
@@ -228,7 +228,7 @@ program
         comMojang?: boolean | string;
         out?: string;
         rp: boolean;
-        minify?: boolean;
+        optimize?: boolean;
         entry: string;
         assets: string;
       },
@@ -251,7 +251,7 @@ program
         includeRp: options.rp,
         indexPath: options.entry,
         assetsPath: options.assets,
-        minify: !!options.minify,
+        optimize: !!options.optimize,
         out: options.out
           ? { outPath: resolveFilePathEnvironmentVariables(options.out) }
           : {
