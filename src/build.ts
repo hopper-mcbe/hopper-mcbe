@@ -11,14 +11,32 @@ import {
 } from "../types/script_globals_helper_types.js";
 import { writeFileRecursive } from "./utils.js";
 import * as babelParser from "@babel/parser";
-import babelGenerator from "@babel/generator";
-import babelTraverse from "@babel/traverse";
+import babelGenerator_ from "@babel/generator";
+import babelTraverse_, { NodePath } from "@babel/traverse";
 import * as babelTypes from "@babel/types";
+
+// @ts-expect-error default does not exist
+const babelGenerator = babelGenerator_.default as typeof babelGenerator_;
+// @ts-expect-error default does not exist
+const babelTraverse = babelTraverse_.default as typeof babelTraverse_;
+
+function evaluateMemberExpressionOrCallExpressionAsNull(
+  path: NodePath<babelTypes.MemberExpression>,
+) {
+  path
+    .find(
+      (path) =>
+        path.isCallExpression() ||
+        (!path.parentPath?.isMemberExpression() &&
+          !path.parentPath?.isCallExpression()),
+    )
+    ?.replaceWith(babelTypes.nullLiteral());
+}
 
 function executeAndGetFileDefs(bundleContent: string): FileDefinition[] {
   const ast = babelParser.parse(bundleContent, { sourceType: "module" });
 
-  babelTraverse.default(ast, {
+  babelTraverse(ast, {
     LabeledStatement(path) {
       if (path.node.label.name !== "$") return;
       path.remove();
@@ -30,15 +48,11 @@ function executeAndGetFileDefs(bundleContent: string): FileDefinition[] {
       )
         return;
 
-      path
-        .findParent((path) => !path.isMemberExpression())
-        ?.replaceWith(babelTypes.nullLiteral());
+      evaluateMemberExpressionOrCallExpressionAsNull(path);
     },
   });
 
-  const finalCode = babelGenerator.default(ast).code;
-
-  console.log(finalCode);
+  const finalCode = babelGenerator(ast).code;
 
   let allFilesCount = 0;
   const fileOnceKeys = new Set();
@@ -249,7 +263,7 @@ export async function build(options: BuildOptions) {
 
   const ast = babelParser.parse(bundleContent, { sourceType: "module" });
 
-  babelTraverse.default(ast, {
+  babelTraverse(ast, {
     LabeledStatement(path) {
       if (path.node.label.name !== "_") return;
       path.remove();
@@ -261,13 +275,11 @@ export async function build(options: BuildOptions) {
       )
         return;
 
-      path
-        .findParent((path) => !path.isMemberExpression())
-        ?.replaceWith(babelTypes.nullLiteral());
+      evaluateMemberExpressionOrCallExpressionAsNull(path);
     },
   });
 
-  let finalBundleContent = banner + babelGenerator.default(ast).code;
+  let finalBundleContent = banner + babelGenerator(ast).code;
 
   if (options.optimize) {
     finalBundleContent = (
