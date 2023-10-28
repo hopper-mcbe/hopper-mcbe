@@ -38,15 +38,6 @@ export interface DefineFileRawOptions extends DefineFileOptions {
   ext: string;
 }
 
-export interface DefineScriptOptions {
-  /**
-   * Only execute the script with this `key` once.
-   */
-  once?: {
-    key: string;
-  };
-}
-
 export type DefineFileFunc<T> = (
   content: T,
   options?: DefineFileOptions,
@@ -57,9 +48,7 @@ export type DefineFileFuncOptionsRequired<
   O extends DefineFileOptions = DefineFileOptions,
 > = (content: T, options: O) => string | false;
 
-export type DefineScriptCallback = (modules: any) => void;
-
-export interface ComponentBodyDefine {
+export interface Define {
   serverAnimationController: DefineFileFunc<mcDefs.b_animation_controller.Main>;
   serverAnimation: DefineFileFunc<mcDefs.b_animations.Main>;
   biome: DefineFileFunc<mcDefs.b_biomes.Main>;
@@ -89,35 +78,8 @@ export interface ComponentBodyDefine {
   particle: DefineFileFunc<mcDefs.r_particles.Main>;
   renderController: DefineFileFunc<mcDefs.r_render_controllers.Main>;
   rawText: DefineFileFuncOptionsRequired<string, DefineFileRawOptions>;
-  /**
-   * Defines a callback that will execute for each implementation.
-   */
-  script(callback: DefineScriptCallback, options?: DefineScriptOptions): void;
 }
 
-export interface DefineComponentCallbackArg {
-  define: ComponentBodyDefine;
-  implement(component: Component): void;
+export interface CompileTimeGlobalObject {
+  define: Define;
 }
-
-export interface Component {
-  /**
-   * @internal
-   */
-  _fileDefinitions: FileDefinition[]; // used at compiletime
-  /**
-   * @internal
-   */
-  _scriptCallbacks: DefineScriptCallback[]; // used at runtime
-}
-
-export type CreateAddonGlobalFunc = (mainComponent: Component) => void;
-
-export type DefineComponentGlobalFuncCallback<T extends unknown[]> = (
-  arg: DefineComponentCallbackArg,
-  ...ctorArgs: T
-) => void;
-
-export type DefineComponentGlobalFunc = <T extends unknown[]>(
-  callback: DefineComponentGlobalFuncCallback<T>,
-) => (...args: T) => Component;

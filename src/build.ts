@@ -3,11 +3,8 @@ import * as path from "path";
 import * as esbuild from "esbuild";
 import * as fs from "fs";
 import {
-  Component,
-  ComponentBodyDefine,
-  CreateAddonGlobalFunc,
-  DefineComponentGlobalFunc,
-  DefineComponentGlobalFuncCallback,
+  CompileTimeGlobalObject,
+  Define,
   DefineFileOptions,
   DefineFileRawOptions,
   FileDefinition,
@@ -16,117 +13,105 @@ import { writeFileRecursive } from "./utils.js";
 import * as babelParser from "@babel/parser";
 import babelGenerator from "@babel/generator";
 import babelTraverse from "@babel/traverse";
+import * as babelTypes from "@babel/types";
 
-function executeAndGetFileDefs(code: string) {
-  let mainComponent: Component | undefined;
+function executeAndGetFileDefs(bundleContent: string): FileDefinition[] {
+  const ast = babelParser.parse(bundleContent, { sourceType: "module" });
+
+  babelTraverse.default(ast, {
+    LabeledStatement(path) {
+      if (path.node.label.name !== "$") return;
+      path.remove();
+    },
+    MemberExpression(path) {
+      if (
+        path.node.object.type !== "Identifier" ||
+        path.node.object.name !== "$"
+      )
+        return;
+
+      path
+        .findParent((path) => !path.isMemberExpression())
+        ?.replaceWith(babelTypes.nullLiteral());
+    },
+  });
+
+  const finalCode = babelGenerator.default(ast).code;
+
+  console.log(finalCode);
+
   let allFilesCount = 0;
   const fileOnceKeys = new Set();
 
-  const createAddon: CreateAddonGlobalFunc = (mainComponent_) => {
-    if (mainComponent) {
-      throw new Error("'createAddon' has already been called");
-    }
-    mainComponent = mainComponent_;
-  };
+  const fileDefinitions: FileDefinition[] = [];
 
-  const defineComponent: DefineComponentGlobalFunc = <T extends unknown[]>(
-    callback: DefineComponentGlobalFuncCallback<T>,
-  ) => {
-    if (mainComponent) {
-      throw new Error(
-        "Cannot define a component after 'createAddon' has been called",
-      );
+  function defineFile(content: string, o: DefineFileRawOptions) {
+    const onceKey = o.once?.key;
+    if (onceKey) {
+      if (fileOnceKeys.has(onceKey)) return false;
+      fileOnceKeys.add(onceKey);
     }
 
-    return (...args: T): Component => {
-      let fileDefinitions: FileDefinition[] = [];
+    const fileName = o.name ?? allFilesCount.toString();
 
-      function defineFile(content: string, o: DefineFileRawOptions) {
-        const onceKey = o.once?.key;
-        if (onceKey) {
-          if (fileOnceKeys.has(onceKey)) return false;
-          fileOnceKeys.add(onceKey);
-        }
+    fileDefinitions.push({
+      path: path.join(o.rootDir, `${fileName}.${o.ext}`),
+      content,
+    });
 
-        const fileName = o.name ?? allFilesCount.toString();
+    allFilesCount++;
 
-        fileDefinitions.push({
-          path: path.join(o.rootDir, `${fileName}.${o.ext}`),
-          content,
-        });
-
-        allFilesCount++;
-
-        return fileName;
-      }
-
-      function defineJsonFile(
-        defaultRootDir: string,
-        content: object,
-        o: DefineFileOptions = {},
-      ) {
-        return defineFile(JSON.stringify(content), {
-          name: o.name,
-          rootDir: o.rootDir ?? defaultRootDir,
-          ext: o.ext ?? "json",
-        });
-      }
-
-      const define: ComponentBodyDefine = {
-        serverAnimationController: (content, o) =>
-          defineJsonFile("BP/animation_controllers", content, o),
-        serverAnimation: (content, o) =>
-          defineJsonFile("BP/animations", content, o),
-        biome: (content, o) => defineJsonFile("BP/biomes", content, o),
-        block: (content, o) => defineJsonFile("BP/blocks", content, o),
-        dialogue: (content, o) => defineJsonFile("BP/dialogue", content, o),
-        entity: (content, o) => defineJsonFile("BP/entities", content, o),
-        featureRules: (content, o) =>
-          defineJsonFile("BP/feature_rules", content, o),
-        feature: (content, o) => defineJsonFile("BP/features", content, o),
-        item: (content, o) => defineJsonFile("BP/items", content, o),
-        lootTable: (content, o) => defineJsonFile("BP/loot_tables", content, o),
-        recipe: (content, o) => defineJsonFile("BP/recipes", content, o),
-        spawnRules: (content, o) =>
-          defineJsonFile("BP/spawn_rules", content, o),
-        tradeTable: (content, o) => defineJsonFile("BP/trading", content, o),
-        clientAnimationController: (content, o) =>
-          defineJsonFile("RP/animation_controllers", content, o),
-        clientAnimation: (content, o) =>
-          defineJsonFile("RP/animations", content, o),
-        attachable: (content, o) =>
-          defineJsonFile("RP/attachables", content, o),
-        clientEntity: (content, o) => defineJsonFile("RP/entity", content, o),
-        particle: (content, o) => defineJsonFile("RP/particles", content, o),
-        renderController: (content, o) =>
-          defineJsonFile("RP/render_controllers", content, o),
-        rawText: defineFile,
-        // ignored
-        script: () => {},
-      };
-
-      function implement(component: Component) {
-        fileDefinitions = [...component._fileDefinitions, ...fileDefinitions];
-      }
-
-      callback({ define, implement }, ...args);
-
-      return { _fileDefinitions: fileDefinitions, _scriptCallbacks: [] };
-    };
-  };
-
-  const context = vm.createContext({
-    createAddon,
-    defineComponent,
-  });
-
-  vm.runInContext(code, context);
-
-  if (!mainComponent) {
-    throw new Error("'createAddon' must be called");
+    return fileName;
   }
 
-  return mainComponent._fileDefinitions;
+  function defineJsonFile(
+    defaultRootDir: string,
+    content: object,
+    o: DefineFileOptions = {},
+  ) {
+    return defineFile(JSON.stringify(content), {
+      name: o.name,
+      rootDir: o.rootDir ?? defaultRootDir,
+      ext: o.ext ?? "json",
+    });
+  }
+
+  const define: Define = {
+    serverAnimationController: (content, o) =>
+      defineJsonFile("BP/animation_controllers", content, o),
+    serverAnimation: (content, o) =>
+      defineJsonFile("BP/animations", content, o),
+    biome: (content, o) => defineJsonFile("BP/biomes", content, o),
+    block: (content, o) => defineJsonFile("BP/blocks", content, o),
+    dialogue: (content, o) => defineJsonFile("BP/dialogue", content, o),
+    entity: (content, o) => defineJsonFile("BP/entities", content, o),
+    featureRules: (content, o) =>
+      defineJsonFile("BP/feature_rules", content, o),
+    feature: (content, o) => defineJsonFile("BP/features", content, o),
+    item: (content, o) => defineJsonFile("BP/items", content, o),
+    lootTable: (content, o) => defineJsonFile("BP/loot_tables", content, o),
+    recipe: (content, o) => defineJsonFile("BP/recipes", content, o),
+    spawnRules: (content, o) => defineJsonFile("BP/spawn_rules", content, o),
+    tradeTable: (content, o) => defineJsonFile("BP/trading", content, o),
+    clientAnimationController: (content, o) =>
+      defineJsonFile("RP/animation_controllers", content, o),
+    clientAnimation: (content, o) =>
+      defineJsonFile("RP/animations", content, o),
+    attachable: (content, o) => defineJsonFile("RP/attachables", content, o),
+    clientEntity: (content, o) => defineJsonFile("RP/entity", content, o),
+    particle: (content, o) => defineJsonFile("RP/particles", content, o),
+    renderController: (content, o) =>
+      defineJsonFile("RP/render_controllers", content, o),
+    rawText: defineFile,
+  };
+
+  const _: CompileTimeGlobalObject = { define };
+
+  const context = vm.createContext({ _ });
+
+  vm.runInContext(finalCode, context);
+
+  return fileDefinitions;
 }
 
 type MinecraftManifestDependency =
@@ -248,9 +233,6 @@ export async function build(options: BuildOptions) {
   ) as MinecraftManifest;
 
   // create runtime banner
-  const runtimeScript = `let createAddonCalled=!1;globalThis.createAddon=e=>{if(createAddonCalled)throw Error("'createAddon' has already been called");for(let n of e._scriptCallbacks)n(MODULES);createAddonCalled=!0};let allFilesCount=0,fileOnceKeys=new Set;globalThis.defineComponent=e=>{if(createAddonCalled)throw Error("Cannot define a component after 'createAddon' has been called");return(...n)=>{let t=[],l=!0,a=(e,n={})=>{if(!l)throw Error("Cannot use 'define' as it is no longer available");let t=n.once?.key;if(t){if(fileOnceKeys.has(t))return!1;fileOnceKeys.add(t)}let a=n.name??allFilesCount.toString();return allFilesCount++,a},i={serverAnimationController:a,serverAnimation:a,biome:a,block:a,dialogue:a,entity:a,featureRules:a,feature:a,item:a,lootTable:a,recipe:a,spawnRules:a,tradeTable:a,clientAnimationController:a,clientAnimation:a,attachable:a,clientEntity:a,particle:a,renderController:a,rawText:a,script(e,n={}){if(!l)throw Error("Cannot use 'define' as it is no longer available");let a=n.once?.key;if(a){if(fileOnceKeys.has(a))return;fileOnceKeys.add(a)}t.push(e)}};function o(e){if(!l)throw Error("Cannot use 'implement' as it is no longer available");t=[...e._scriptCallbacks,...t]}return e({define:i,implement:o},...n),l=!1,{_fileDefinitions:[],_scriptCallbacks:t}}};`;
-  const optimizedRuntimeScript = `globalThis.createAddon=e=>{for(let c of e._scriptCallbacks)c(MODULES)};const fileOnceKeys=new Set;globalThis.defineComponent=e=>(...c)=>{let n=[],t=(e,c={})=>!1,s=new Proxy({script(e,c={}){let t=c.once?.key;if(t){if(fileOnceKeys.has(t))return;fileOnceKeys.add(t)}n.push(e)}},{get:(e,c)=>"script"===c?e.script:t});function i(e){n=[...e._scriptCallbacks,...n]}return e({define:s,implement:i},...c),{_scriptCallbacks:n}};`;
-
   let imports = "";
   let modulesKeyVal = "";
   for (const [i, dependency] of (bpManifest.dependencies ?? []).entries()) {
@@ -262,29 +244,38 @@ export async function build(options: BuildOptions) {
     imports += `import*as ${importName} from"${dependency.module_name}";`;
     modulesKeyVal += `"${alias}":${importName},`;
   }
-  const banner = `${imports}(()=>{const MODULES={${modulesKeyVal}};${
-    options.optimize ? optimizedRuntimeScript : runtimeScript
-  }})();`;
+  const banner = `${imports}const $={${modulesKeyVal}};`;
   //
 
-  let finalBundleContent = banner;
+  const ast = babelParser.parse(bundleContent, { sourceType: "module" });
+
+  babelTraverse.default(ast, {
+    LabeledStatement(path) {
+      if (path.node.label.name !== "_") return;
+      path.remove();
+    },
+    MemberExpression(path) {
+      if (
+        path.node.object.type !== "Identifier" ||
+        path.node.object.name !== "_"
+      )
+        return;
+
+      path
+        .findParent((path) => !path.isMemberExpression())
+        ?.replaceWith(babelTypes.nullLiteral());
+    },
+  });
+
+  let finalBundleContent = banner + babelGenerator.default(ast).code;
 
   if (options.optimize) {
-    const ast = babelParser.parse(bundleContent, { sourceType: "module" });
-
-    babelTraverse.default(ast, {
-      LabeledStatement(path) {
-        if (path.node.label.name !== "_") return;
-        path.remove();
-      },
-    });
-
-    finalBundleContent += babelGenerator.default(ast, {
-      minified: true,
-      comments: false,
-    }).code;
-  } else {
-    finalBundleContent += bundleContent;
+    finalBundleContent = (
+      await esbuild.transform(finalBundleContent, {
+        format: "esm",
+        minify: true,
+      })
+    ).code;
   }
 
   writePromises.push(
