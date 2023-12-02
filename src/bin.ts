@@ -449,11 +449,11 @@ program
           `declare global {\n\tvar $: {\n\t\t${inquirerResponse.scriptModules
             .map(
               (moduleName) =>
-                `${
+                `"${
                   MINECRAFT_SCRIPT_MODULES[
                     moduleName as keyof typeof MINECRAFT_SCRIPT_MODULES
                   ].alias
-                }: typeof import("${moduleName}")`,
+                }": typeof import("${moduleName}")`,
             )
             .join("\n\t\t")}\n\t}\n}\nexport {};`,
         ),

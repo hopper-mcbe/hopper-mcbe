@@ -1,4 +1,4 @@
-import * as mcDefs from "../types/minecraft_definition_types.js";
+import * as mcDefs from "./minecraft_definition_types.js";
 
 export interface FileDefinition {
   path: string;

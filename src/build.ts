@@ -14,6 +14,7 @@ import * as babelParser from "@babel/parser";
 import babelGenerator_ from "@babel/generator";
 import babelTraverse_, { NodePath } from "@babel/traverse";
 import * as babelTypes from "@babel/types";
+import * as terser from "terser";
 
 // @ts-expect-error default does not exist
 const babelGenerator = babelGenerator_.default as typeof babelGenerator_;
@@ -282,12 +283,10 @@ export async function build(options: BuildOptions) {
   let finalBundleContent = banner + babelGenerator(ast).code;
 
   if (options.optimize) {
-    finalBundleContent = (
-      await esbuild.transform(finalBundleContent, {
-        format: "esm",
-        minify: true,
-      })
-    ).code;
+    const code = (await terser.minify(finalBundleContent, { module: true }))
+      .code;
+    if (!code) throw new Error("Terser did not produce an output.");
+    finalBundleContent = code;
   }
 
   writePromises.push(
