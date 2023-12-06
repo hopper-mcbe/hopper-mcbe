@@ -381,9 +381,8 @@ program
 
       await Promise.all([
         fs.promises.mkdir(path.join(inquirerResponse.name, "assets")),
-        fs.promises.mkdir(path.join(inquirerResponse.name, "src/components"), {
-          recursive: true,
-        }),
+        fs.promises.mkdir(path.join(inquirerResponse.name, "types")),
+        fs.promises.mkdir(path.join(inquirerResponse.name, "src")),
         fs.promises.writeFile(
           path.join(inquirerResponse.name, ".gitignore"),
           "/build\n/node_modules",
@@ -394,7 +393,10 @@ program
             {
               include: ["./src"],
               compilerOptions: {
-                types: ["hopper-mcbe/types/script_globals"],
+                types: [
+                  "hopper-mcbe/types/script_globals",
+                  "./types/script_globals",
+                ],
                 forceConsistentCasingInFileNames: true,
                 strict: true,
                 target: "es2022",
@@ -440,28 +442,20 @@ program
         }),
         fs.promises.writeFile(
           path.join(inquirerResponse.name, "src/index.ts"),
-          'import { $Main } from "./components/$Main";\n\ncreateAddon($Main());',
+          "",
         ),
         fs.promises.writeFile(
-          path.join(inquirerResponse.name, "src/common.ts"),
-          `export interface Modules {\n\t${inquirerResponse.scriptModules
+          path.join(inquirerResponse.name, "types/script_globals.d.ts"),
+          `declare global {\n\tvar $: {\n\t\t${inquirerResponse.scriptModules
             .map(
               (moduleName) =>
-                `${
+                `"${
                   MINECRAFT_SCRIPT_MODULES[
                     moduleName as keyof typeof MINECRAFT_SCRIPT_MODULES
                   ].alias
-                }: typeof import("${moduleName}")`,
+                }": typeof import("${moduleName}")`,
             )
-            .join("\n\t")}\n}`,
-        ),
-        fs.promises.writeFile(
-          path.join(inquirerResponse.name, "src/components/$Main.ts"),
-          'import { Example } from "./Example";\n\nexport const $Main = defineComponent(({ implement }) => {\n\timplement(Example("Hello, World"));\n});',
-        ),
-        fs.promises.writeFile(
-          path.join(inquirerResponse.name, "src/components/Example.ts"),
-          'import { Modules } from "../common";\n\nexport const Example = defineComponent(({ define }, message: string) => {\n\tdefine.script((modules: Modules) => { console.warn(message); });\n});',
+            .join("\n\t\t")}\n\t}\n}\nexport {};`,
         ),
       ];
 

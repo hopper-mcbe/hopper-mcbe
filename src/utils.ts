@@ -14,8 +14,8 @@ export function splitAndConvertElementsToNumber(s: string, splitter: string) {
 }
 
 export function resolveFilePathEnvironmentVariables(filePath: string) {
-  return filePath.replace(/%([^%]+)%/g, (original, matched: string) => {
-    const r = process.env[matched];
-    return r ? r : "";
-  });
+  return filePath.replace(
+    /%([^%]+)%/g,
+    (original, matched: string) => process.env[matched] || "",
+  );
 }

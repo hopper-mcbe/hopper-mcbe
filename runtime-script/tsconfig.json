@@ -1,8 +1,0 @@
-{
-  "extends": "../tsconfig.json",
-  "include": ["."],
-  "compilerOptions": {
-    "types": ["../types/script_globals"],
-    "outDir": "./dist"
-  }
-}

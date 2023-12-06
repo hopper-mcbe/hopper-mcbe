@@ -38,12 +38,14 @@
     "@babel/generator": "^7.23.0",
     "@babel/parser": "^7.23.0",
     "@babel/traverse": "^7.23.0",
+    "@babel/types": "^7.23.0",
     "chalk": "^5.3.0",
     "chokidar": "^3.5.3",
     "commander": "^11.0.0",
     "esbuild": "^0.18.15",
     "inquirer": "^9.2.8",
     "ora": "^6.3.1",
+    "terser": "^5.22.0",
     "uuid": "^9.0.0"
   }
 }
