@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "es2022",
     "module": "es2022",
-    "moduleResolution": "nodenext",
+    "moduleResolution": "node",
     "outDir": "./dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
