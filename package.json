@@ -1,6 +1,6 @@
 {
-  "name": "hopper-mcbe",
-  "version": "0.2.0",
+  "name": "@hopper-mcbe/hopper-mcbe",
+  "version": "0.3.0",
   "author": "Shawn Bhumbla <shawnbhumbla2@gmail.com>",
   "license": "ISC",
   "repository": {

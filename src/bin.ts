@@ -139,10 +139,10 @@ program
             type === "scriptUpdate"
               ? chalk.green("[Script Update]")
               : type === "assetUpdate"
-              ? chalk.green("[Asset Update]")
-              : type === "error"
-              ? chalk.red("[Error]")
-              : chalk.blue("[Info]")
+                ? chalk.green("[Asset Update]")
+                : type === "error"
+                  ? chalk.red("[Error]")
+                  : chalk.blue("[Info]")
           } ${message}`,
         );
       }
@@ -394,7 +394,7 @@ program
               include: ["./src"],
               compilerOptions: {
                 types: [
-                  "hopper-mcbe/types/script_globals",
+                  "@hopper-mcbe/hopper-mcbe/types/script_globals",
                   "./types/script_globals",
                 ],
                 forceConsistentCasingInFileNames: true,
@@ -426,7 +426,7 @@ program
                 clean: `hopper clean "${inquirerResponse.name}"`,
               },
               devDependencies: {
-                "hopper-mcbe": `^${VERSION}`,
+                "@hopper-mcbe/hopper-mcbe": `^${VERSION}`,
                 ...typeVersionPromptResponse,
               },
             },
