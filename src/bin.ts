@@ -147,8 +147,27 @@ program
         );
       }
 
-      let isRebuilding = false;
+      let isRebuilding = true;
       let shouldRebuild = false;
+
+      // initial build
+      log("info", "Running initial build");
+      build({ ...buildOptions, copyAssets: true })
+        .then(() => {
+          log("info", "Completed initial build");
+        })
+        .catch((err) => {
+          log("error", (err as Error).message);
+        })
+        .finally(() => {
+          if (shouldRebuild) {
+            shouldRebuild = false;
+            scriptRebuild();
+          } else {
+            isRebuilding = false;
+          }
+        });
+      // --
 
       function scriptRebuild() {
         isRebuilding = true;
