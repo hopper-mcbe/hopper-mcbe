@@ -178,7 +178,7 @@ export async function build(options: BuildOptions) {
     throw new Error(`'${bpManifestPath}' does not exist`);
   }
 
-  if (!fs.existsSync(rpManifestPath)) {
+  if (!fs.existsSync(rpManifestPath) && options.includeRp) {
     throw new Error(`'${rpManifestPath}' does not exist`);
   }
 
@@ -219,19 +219,6 @@ export async function build(options: BuildOptions) {
       );
     }
   }
-
-  if (options.includeRp) {
-    writePromises.push(
-      fs.promises.copyFile(
-        rpManifestPath,
-        path.join(outDirRp, "manifest.json"),
-      ),
-    );
-  }
-
-  writePromises.push(
-    fs.promises.copyFile(bpManifestPath, path.join(outDirBp, "manifest.json")),
-  );
 
   for (const fileDef of fileDefs) {
     const outPath = fileDef.path.startsWith("BP") ? outDirBp : outDirRp;
@@ -297,4 +284,16 @@ export async function build(options: BuildOptions) {
   );
 
   await Promise.all(writePromises);
+
+  if (options.optimize) {
+    const newDependencies = bpManifest.dependencies?.map((v) => ({
+      ...v,
+      "hopper:alias": undefined,
+    }));
+
+    await fs.promises.writeFile(
+      path.join(outDirBp, "manifest.json"),
+      JSON.stringify({ ...bpManifest, dependencies: newDependencies }),
+    );
+  }
 }
